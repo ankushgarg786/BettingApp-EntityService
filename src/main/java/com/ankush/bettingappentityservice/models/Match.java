@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "matches")
 public class Match extends BaseEntity{
 
     @Column(nullable = false)
