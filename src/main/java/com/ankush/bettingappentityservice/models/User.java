@@ -1,10 +1,11 @@
 package com.ankush.bettingappentityservice.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,4 +32,12 @@ public class User extends BaseEntity{
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private Wallet wallet;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Bet> bets;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Transaction> transactions= new ArrayList<>();
 }
